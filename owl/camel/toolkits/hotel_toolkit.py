@@ -380,15 +380,15 @@ class HotelToolkit(BaseToolkit):
         # 创建任务
         task = {
             "input": full_query,
-            "type": "hotel_booking"
+            # "type": "hotel_booking"
         }
         
-        logger.info(f"\n=== 测试任务: {task['type']} ===")
+        # logger.info(f"\n=== 测试任务: {task['type']} ===")
         logger.info(f"用户输入: {task['input']}")
         
         # 使用现有的 process_user_input 函数处理用户请求
         try:
-            result = self.process_user_input(task['input'], task['type'])
+            result = self.process_user_input(task['input'])
             
             # 构建结果
             response = {

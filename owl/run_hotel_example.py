@@ -41,6 +41,18 @@ def construct_society(question: str) -> OwlRolePlaying:
     # 创建工具列表，只包含酒店工具包
     tools_list = [
         *HotelToolkit().get_tools(),
+        # *WebToolkit(
+        #     headless=False, # Set to True if you want to run in headless mode (e.g. on a remote server)
+        #     web_agent_model=assistant_model, 
+        #     planning_agent_model=assistant_model
+        # ).get_tools(),
+        # *DocumentProcessingToolkit().get_tools(),
+        # *VideoAnalysisToolkit(model=assistant_model).get_tools(),  # This requires OpenAI Key
+        # *AudioAnalysisToolkit().get_tools(),  # This requires OpenAI Key
+        # *CodeExecutionToolkit(sandbox="subprocess", verbose=True).get_tools(),
+        # *ImageAnalysisToolkit(model=assistant_model).get_tools(),
+        # *SearchToolkit(model=assistant_model).get_tools(),
+        # *ExcelToolkit().get_tools()
     ]
 
     user_agent_kwargs = dict(model=user_model)
@@ -63,7 +75,8 @@ def construct_society(question: str) -> OwlRolePlaying:
 
 
 # 示例问题
-question = "我需要预订杭州的一个酒店：2025年3月9日，1天的酒店，经纬度（120.026208, 30.279212）。请一步步处理：第一步，你自己选择一个不错的酒店，第二步，帮我选择一个房间。最后告诉我你选择的详细信息"
+# question = "我需要预订杭州的一个酒店：2025年3月9日，1天的酒店，经纬度（120.026208, 30.279212）。请一步步处理：第一步，你自己选择一个不错的酒店，第二步，帮我选择一个房间。最后告诉我你选择的详细信息"
+question = "帮我分析下杭州的旅游"
 
 society = construct_society(question)
 answer, chat_history, token_count = run_society(society)
