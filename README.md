@@ -1,256 +1,115 @@
-<h1 align="center">
-	🦉 OWL: Optimized Workforce Learning for General Multi-Agent Assistance in Real-World Task Automation
-</h1>
+# 酒店查询示例使用说明
 
+## OWL 项目简介
 
-<div align="center">
+🦉 OWL (Optimized Workforce Learning for General Multi-Agent Assistance in Real-World Task Automation) 是一个前沿的多智能体协作框架，旨在推动任务自动化的边界，构建在 [CAMEL-AI Framework](https://github.com/camel-ai/camel) 之上。OWL 通过利用动态智能体交互，实现了跨多领域更自然、高效且稳健的任务自动化。
 
-[![Documentation][docs-image]][docs-url]
-[![Discord][discord-image]][discord-url]
-[![X][x-image]][x-url]
-[![Reddit][reddit-image]][reddit-url]
-[![Wechat][wechat-image]][wechat-url]
-[![Wechat][owl-image]][owl-url]
-[![Hugging Face][huggingface-image]][huggingface-url]
-[![Star][star-image]][star-url]
-[![Package License][package-license-image]][package-license-url]
+OWL 提供了多种核心功能，包括：
+- **在线搜索**：使用维基百科、谷歌搜索等，进行实时信息检索
+- **多模态处理**：支持互联网或本地视频、图片、语音处理
+- **浏览器操作**：借助Playwright框架开发浏览器模拟交互
+- **文件解析**：word、excel、PDF、PowerPoint信息提取
+- **代码执行**：编写python代码，并使用解释器运行
 
+## 酒店查询功能简介
 
-</div>
+`run_hotel_example.py` 是基于 OWL 框架集成开发的一个演示脚本，专门用于展示如何使用 `HotelToolkit` 进行酒店查询和推荐。该功能是 OWL 项目的一个扩展应用，展示了如何将 OWL 的多智能体协作能力应用于特定领域的任务。
 
+该脚本使用 Azure OpenAI 服务来处理自然语言查询，并通过 `HotelToolkit` 提供的工具函数来获取酒店信息和推荐。通过这个示例，您可以了解如何将 OWL 框架应用于实际业务场景，以及如何开发自己的领域特定工具包。
 
-<hr>
+## 前提条件
 
-<div align="center">
-<h4 align="center">
+在运行此脚本之前，您需要满足以下条件：
 
-[中文阅读](https://github.com/camel-ai/owl/tree/main/README_zh.md) |
-[Community](https://github.com/camel-ai/owl#community) |
-[Installation](#️-installation) |
-[Examples](https://github.com/camel-ai/owl/tree/main/owl) |
-[Paper](https://arxiv.org/abs/2303.17760) |
-[Citation](https://github.com/camel-ai/owl#citation) |
-[Contributing](https://github.com/camel-ai/owl/graphs/contributors) |
-[CAMEL-AI](https://www.camel-ai.org/)
+1. 安装所有必要的依赖项（可在项目根目录运行 `pip install -r requirements.txt`, 具体可参考README.md/README_zh.md）
+2. 配置 Azure OpenAI API 凭据（在 `.env` 文件中设置）
 
-</h4>
+## 环境变量配置
 
-<div align="center" style="background-color: #f0f7ff; padding: 10px; border-radius: 5px; margin: 15px 0;">
-  <h3 style="color: #1e88e5; margin: 0;">
-    🏆 OWL achieves <span style="color: #d81b60; font-weight: bold; font-size: 1.2em;">58.18</span> average score on GAIA benchmark and ranks <span style="color: #d81b60; font-weight: bold; font-size: 1.2em;">🏅️ #1</span> among open-source frameworks! 🏆
-  </h3>
-</div>
+在项目根目录创建一个 `.env` （可参考 `.env_template`）文件，并设置以下环境变量：
 
-<div align="center">
-
-🦉 OWL is a cutting-edge framework for multi-agent collaboration that pushes the boundaries of task automation, built on top of the [CAMEL-AI Framework](https://github.com/camel-ai/camel).
-
-<!-- OWL achieves **58.18** average score on [GAIA](https://huggingface.co/spaces/gaia-benchmark/leaderboard) benchmark and ranks 🏅️ #1 among open-source frameworks. -->
-
-Our vision is to revolutionize how AI agents collaborate to solve real-world tasks. By leveraging dynamic agent interactions, OWL enables more natural, efficient, and robust task automation across diverse domains.
-
-</div>
-
-![](./assets/owl_architecture.png)
-
-<br>
-
-
-</div>
-
-<!-- # Key Features -->
-# 📋 Table of Contents
-
-- [📋 Table of Contents](#-table-of-contents)
-- [🔥 News](#-news)
-- [🎬 Demo Video](#-demo-video)
-- [✨️ Core Features](#-code-features)
-- [🛠️ Installation](#️-installation)
-  - [**Clone the Github repository**](#clone-the-github-repository)
-  - [**Set up Environment**](#set-up-environment)
-  - [**Install Dependencies**](#install-dependencies)
-  - [**Setup Environment Variables**](#setup-environment-variables)
-- [🚀 Quick Start](#-quick-start)
-- [🧪 Experiments](#-experiments)
-- [⏱️ Future Plans](#️-future-plans)
-- [📄 License](#-license)
-- [🖊️ Cite](#️-cite)
-- [🔥 Community](#-community)
-- [❓ FAQ](#-faq)
-- [⭐ Star History](#-star-history)
-
-
-# 🔥 News
-
-- **[2025.03.07]**: We open-source the codebase of 🦉 OWL project.
-
-# 🎬 Demo Video
-
-https://private-user-images.githubusercontent.com/55657767/420211368-f29f477d-7eef-46da-8d7a-8f3bcf506da2.mp4
-
-https://private-user-images.githubusercontent.com/55657767/420212194-e813fc05-136a-485f-8df3-f10d9b4e63ec.mp4
-
-# ✨️ Core Features
-
-- **Real-time Information Retrieval**: Leverage Wikipedia, Google Search, and other online sources for up-to-date information.
-- **Multimodal Processing**: Support for handling internet or local videos, images, and audio data.
-- **Browser Automation**: Utilize the Playwright framework for simulating browser interactions, including scrolling, clicking, input handling, downloading, navigation, and more.
-- **Document Parsing**: Extract content from Word, Excel, PDF, and PowerPoint files, converting them into text or Markdown format.
-- **Code Execution**: Write and execute Python code using interpreter.
-
-# 🛠️ Installation
-
-## **Clone the Github repository**
-
-```bash
-git clone https://github.com/camel-ai/owl.git
-cd owl
+```
+AZURE_OPENAI_API_KEY=your_api_key
+AZURE_OPENAI_API_VERSION=your_api_version
+AZURE_OPENAI_ENDPOINT=your_endpoint
+AZURE_OPENAI_DEPLOYMENT=your_deployment
+AZURE_OPENAI_MODEL=your_model_name
 ```
 
-## **Set up Environment**
+## 使用方法
 
-Using Conda (recommended):
-```bash
-conda create -n owl python=3.11
-conda activate owl
-```
+### 基本用法
 
-Using venv (alternative):
-```bash
-python -m venv owl_env
-# On Windows
-owl_env\Scripts\activate
-# On Unix or MacOS
-source owl_env/bin/activate
-```
-
-
-## **Install Dependencies**
+直接运行脚本即可启动酒店查询示例：
 
 ```bash
-python -m pip install -r requirements.txt
-playwright install
+python run_hotel_example.py
 ```
 
-## **Setup Environment Variables** 
+默认情况下，脚本会使用预设的查询："我需要预订杭州的一个酒店：2025年3月9日，1天的酒店，经纬度（120.026208, 30.279212）。请一步步处理：第一步，你自己选择一个不错的酒店，第二步，帮我选择一个房间。最后告诉我你选择的详细信息"
 
-In the `owl/.env_template` file, you will find all the necessary API keys along with the websites where you can register for each service. To use these API services, follow these steps:
+### 自定义查询
 
-1. *Copy and Rename*: Duplicate the `.env_example` file and rename the copy to `.env`.
-```bash
-cp owl/.env_template .env
-```
-2. *Fill in Your Keys*: Open the `.env` file and insert your API keys in the corresponding fields.  (For the minimal example (`run_mini.py`), you only need to configure the LLM API key (e.g., OPENAI_API_KEY).)
-3. *For using more other models*: please refer to our CAMEL models docs:https://docs.camel-ai.org/key_modules/models.html#supported-model-platforms-in-camel
-
-
-> **Note**: For optimal performance, we strongly recommend using OpenAI models. Our experiments show that other models may result in significantly lower performance on complex tasks and benchmarks.
-
-# 🚀 Quick Start
-   
-Run the following demo case:
-
-```bash
-python owl/run.py
-```
-
-For a simpler version that only requires an LLM API key, you can try our minimal example:
-
-```bash
-python owl/run_mini.py
-```
-
-You can run OWL agent with your own task by modifying the `run.py` script:
+如果您想使用自定义查询，可以修改脚本中的 `question` 变量：
 
 ```python
-# Define your own task
-question = "Task description here."
+# 示例问题
+question = "我需要预订上海的一个酒店：2025年4月15日，2天的酒店，靠近外滩。我需要有免费早餐的房间。"
 
 society = construct_society(question)
 answer, chat_history, token_count = run_society(society)
-
-logger.success(f"Answer: {answer}")
 ```
 
-Example tasks you can try:
-- "Find the latest stock price for Apple Inc."
-- "Analyze the sentiment of recent tweets about climate change"
-- "Help me debug this Python code: [your code here]"
-- "Summarize the main points from this research paper: [paper URL]"
+## 工作原理
 
-# 🧪 Experiments
+1. 脚本首先加载环境变量和必要的依赖项
+2. 创建用户和助手模型实例（使用 Azure OpenAI）
+3. 初始化 `HotelToolkit` 并获取其工具函数
+4. 构建一个 `OwlRolePlaying` 社会，包含用户和助手角色
+5. 运行社会模拟，处理酒店查询请求
+6. 输出查询结果
 
-We provided a script to reproduce the results on GAIA. 
-You can check the `run_gaia_roleplaying.py` file and run the following command:
+## 核心组件
 
-```bash
-python run_gaia_roleplaying.py
-```
+- **HotelToolkit**: 提供酒店查询和推荐功能的工具包
+- **OwlRolePlaying**: 模拟用户和助手之间的对话
+- **ModelFactory**: 创建和配置 AI 模型实例
 
-# ⏱️ Future Plans
+## 示例输出
 
-- [ ] Write a technical blog post detailing our exploration and insights in multi-agent collaboration in real-world tasks.
-- [ ] Enhance the toolkit ecosystem with more specialized tools for domain-specific tasks.
-- [ ] Develop more sophisticated agent interaction patterns and communication protocols
-
-
-# 📄 License
-
-The source code is licensed under Apache 2.0.
-
-# 🖊️ Cite
-
-If you find this repo useful, please cite:
-
+成功运行后，脚本将输出类似以下内容的酒店推荐：
 
 ```
-@misc{owl2025,
-  title        = {OWL: Optimized Workforce Learning for General Multi-Agent Assistance in Real-World Task Automation},
-  author       = {{CAMEL-AI.org}},
-  howpublished = {\url{https://github.com/camel-ai/owl}},
-  note         = {Accessed: 2025-03-07},
-  year         = {2025}
-}
+Answer: 我已经为您选择了一家位于杭州的酒店，详情如下：
+
+选择的酒店：杭州菲住布渴酒店
+- 地址：文一西路969号乐淘城8号楼
+- 星级：4星（高档型）
+- 评分：4.7/5
+- 距离您指定位置：440米
+- 价格：起价¥599/晚
+
+推荐房间：豪华大床房
+- 床型：1张2米大床
+- 面积：28平方米
+- 含早餐
+- 免费WiFi
+- 空调、电视、独立卫浴等标准设施
+
+这家酒店位于杭州未来科技城区域，靠近您提供的经纬度位置，步行仅需5分钟。酒店环境优雅，服务设施完善，包括共享办公空间、叫醒服务和洗衣服务等。房间宽敞舒适，非常适合商务或休闲旅行。
+
+您可以通过酒店官网或主流订房平台预订这家酒店。如需更多信息或其他选择，请告知我。
 ```
 
-# 🔥 Community
-Join us for further discussions!
-<!-- ![](./assets/community.png) -->
-![](./assets/community_5.jpg)
-<!-- ![](./assets/meetup.jpg) -->
+## 故障排除
 
-# ❓ FAQ
+如果遇到问题，请检查：
 
-**Q: Why is my Chrome browser showing a blank screen even though there's output in the console?**
+1. 环境变量是否正确设置
+2. 网络连接是否正常
+3. Azure OpenAI 服务是否可用
+4. 日志输出中是否有错误信息
 
-A: This is expected behavior. When OWL determines that a task can be completed using non-browser tools (like search, code analysis, etc.), the browser window may remain blank. The browser is only activated when web interaction is necessary. We plan to implement lazy loading in future updates to improve this user experience.
+## 贡献
 
-# ⭐ Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=camel-ai/owl&type=Date)](https://star-history.com/#camel-ai/owl&Date)
-
-
-
-[docs-image]: https://img.shields.io/badge/Documentation-EB3ECC
-[docs-url]: https://camel-ai.github.io/camel/index.html
-[star-image]: https://img.shields.io/github/stars/camel-ai/owl?label=stars&logo=github&color=brightgreen
-[star-url]: https://github.com/camel-ai/owl/stargazers
-[package-license-image]: https://img.shields.io/badge/License-Apache_2.0-blue.svg
-[package-license-url]: https://github.com/camel-ai/owl/blob/main/licenses/LICENSE
-
-[colab-url]: https://colab.research.google.com/drive/1AzP33O8rnMW__7ocWJhVBXjKziJXPtim?usp=sharing
-[colab-image]: https://colab.research.google.com/assets/colab-badge.svg
-[huggingface-url]: https://huggingface.co/camel-ai
-[huggingface-image]: https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-CAMEL--AI-ffc107?color=ffc107&logoColor=white
-[discord-url]: https://discord.camel-ai.org/
-[discord-image]: https://img.shields.io/discord/1082486657678311454?logo=discord&labelColor=%20%235462eb&logoColor=%20%23f5f5f5&color=%20%235462eb
-[wechat-url]: https://ghli.org/camel/wechat.png
-[wechat-image]: https://img.shields.io/badge/WeChat-CamelAIOrg-brightgreen?logo=wechat&logoColor=white
-[x-url]: https://x.com/CamelAIOrg
-[x-image]: https://img.shields.io/twitter/follow/CamelAIOrg?style=social
-[twitter-image]: https://img.shields.io/twitter/follow/CamelAIOrg?style=social&color=brightgreen&logo=twitter
-[reddit-url]: https://www.reddit.com/r/CamelAI/
-[reddit-image]: https://img.shields.io/reddit/subreddit-subscribers/CamelAI?style=plastic&logo=reddit&label=r%2FCAMEL&labelColor=white
-[ambassador-url]: https://www.camel-ai.org/community
-[owl-url]: ./assets/qr_code.jpg
-[owl-image]: https://img.shields.io/badge/WeChat-OWLProject-brightgreen?logo=wechat&logoColor=white
+如果您想为这个项目做出贡献，请随时提交 Pull Request 或创建 Issue。
