@@ -49,7 +49,7 @@ from .excel_toolkit import ExcelToolkit
 from .document_processing_toolkit import DocumentProcessingToolkit
 from .sympy_toolkit import SymPyToolkit
 from .web_toolkit import WebToolkit
-
+from .anp_tool import ANPTool
 
 __all__ = [
     'BaseToolkit',
@@ -86,4 +86,5 @@ __all__ = [
     'DocumentProcessingToolkit',
     'SymPyToolkit',
     'WebToolkit',
+    'ANPTool',
 ]

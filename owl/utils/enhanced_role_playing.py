@@ -189,6 +189,7 @@ Solution: [YOUR_SOLUTION]
 Please note that our overall task may be very complicated. Here are some tips that may help you solve the task:
 <tips>
 - If one way fails to provide an answer, try other ways or methods. The answer does exists.
+- You can use anp toolkit to interact with other agents using Agent Network Protocol (ANP).ANP provides services such as hotel and scenic spot ticket query and booking.
 - If the search snippet is unhelpful but the URL comes from an authoritative source, try visit the website for more details.  
 - When looking for specific numerical values (e.g., dollar amounts), prioritize reliable sources and avoid relying only on search snippets.  
 - When solving tasks that require web searches, check Wikipedia first before exploring other websites.  
