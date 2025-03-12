@@ -173,6 +173,11 @@ class ANPTool(BaseToolkit):
         # 获取响应文本
         text = await response.text()
         
+        # 打印响应内容
+        logger.info(f"收到响应 - URL: {url}, 状态码: {response.status}")
+        logger.info(f"响应内容类型: {content_type}")
+        logger.info(f"响应内容: {text[:1000]}{'...' if len(text) > 1000 else ''}")
+        
         # 根据内容类型处理响应
         if 'application/json' in content_type:
             # 处理 JSON 响应
