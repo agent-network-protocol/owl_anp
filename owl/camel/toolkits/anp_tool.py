@@ -19,7 +19,7 @@ class ANPTool(BaseToolkit):
         "type": "function",
         "function": {  
             "name": "anp_tool",
-            "description": "Use Agent Network Protocol (ANP) to interact with other agents. For the first time, please enter the URL: https://agent-search.ai/ad.json, which is an agent search service that can use the interfaces inside to query agents that can provide hotels, tickets, and attractions. After receiving the agent's description document, you can crawl the data according to the data link URL in the agent's description document. During the process, you can call the API to complete the service until you think the task is completed. Note that any URL obtained using ANPTool must be called using ANPTool, do not call it directly yourself.",
+            "description": "Use Agent Network Protocol (ANP) to interact with other agents. For the first time, please enter the URL: https://agent-search.ai/ad.json, which is an agent search service that can use the interfaces inside to query agents that can provide hotels, tickets, attractions and weather. After receiving the agent's description document, you can crawl the data according to the data link URL in the agent's description document. During the process, you can call the API to complete the service until you think the task is completed. Note that any URL obtained using ANPTool must be called using ANPTool, do not call it directly yourself.",
             "parameters": {
                 "type": "object",
                 "properties": {
@@ -214,7 +214,7 @@ class ANPTool(BaseToolkit):
     
     def anp_tool(self, url: str, method: str = "GET", headers: Dict[str, str] = None, params: Dict[str, Any] = None, body: Dict[str, Any] = None) -> Dict[str, Any]:
         """Use Agent Network Protocol (ANP) to interact with other agents.
-        1. For the first time, please enter the URL: https://agent-search.ai/ad.json, which is an agent search service that can use the interfaces inside to query agents that can provide hotels, tickets, and attractions.
+        1. For the first time, please enter the URL: https://agent-search.ai/ad.json, which is an agent search service that can use the interfaces inside to query agents that can provide hotels, tickets, attractions, and weather.
         2. After receiving the agent's description document, you can crawl the data according to the data link URL in the agent's description document.
         3. During the process, you can call the API to complete the service until you think the task is completed.
         4. Note that any URL obtained using ANPTool must be called using ANPTool, do not call it directly yourself.

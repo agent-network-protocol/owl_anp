@@ -68,6 +68,7 @@ formatted_date = current_date.strftime('%Y年%m月%d日')
 
 # 示例问题
 question = f"我需要预订杭州的一个酒店：{formatted_date}，1天的酒店，经纬度（120.026208, 30.279212）。帮我找一个酒店，然后帮我选个房间，我希望大一点，有窗户的。最后告诉我你选择的详细信息"
+# question = "帮我查询一下杭州的天气信息"
 
 society = construct_society(question)
 answer, chat_history, token_count = run_society(society)
